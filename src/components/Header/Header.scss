@@ -1,0 +1,25 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 65px;
+    padding: 0 35px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        width: 20%;
+        li{
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+    }
+    .user-name {
+        font-weight: bold;
+        font-size: 14px;
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis; //ellipsis
+    }
+}

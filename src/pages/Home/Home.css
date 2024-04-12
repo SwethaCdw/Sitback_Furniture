@@ -1,0 +1,18 @@
+.home-page-container {
+  margin: 35px auto;
+  width: 84%;
+}
+.home-page-container .main-title {
+  padding-left: 10px;
+  font-weight: 500;
+  font-size: 40px;
+}
+.home-page-container .main-caption {
+  padding-left: 10px;
+  font-weight: 400;
+}
+.home-page-container .card-container-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}/*# sourceMappingURL=Home.css.map */

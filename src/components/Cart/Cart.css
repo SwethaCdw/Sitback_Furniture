@@ -1,0 +1,17 @@
+.cart-container {
+  width: 900px;
+  height: 100vh;
+  background-color: #f7f7f7;
+  border-left: 1px solid #ccc;
+  padding: 20px;
+}
+.cart-container h2 {
+  margin-bottom: 10px;
+}
+.cart-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+.cart-container li {
+  margin-bottom: 5px;
+}/*# sourceMappingURL=Cart.css.map */
