@@ -1,30 +1,31 @@
+import React from "react";
 import { handleImageError } from "../../utils/common-utils";
-import "./Card.css";
-import { SHOP_NOW_BUTTON } from "../../constants/constants";
+import { ADD_TO_CART_BUTTON, ADD_TO_WISHLIST_BUTTON, GUARANTEE, QUANTITY_LABEL, RUPEE_SYMBOL, SHOP_NOW_BUTTON } from "../../constants/constants";
 import { Link } from "react-router-dom";
+import "./Card.css";
 
-const Card = ({ title, desc, imageSource, productPrice, productGuarantee}) => {
-
+const Card = ({ title, desc, imageSource, productPrice, productGuarantee, productQuantity, onAddToWishlist, onAddToCart}) => {
   return (
     <div className='card-container'>
       <img src={imageSource} onError={handleImageError} alt="Product" ></img>
       <div className="title-container">
         <p className='title'>{title}</p>
-        <p className="product-price">{productPrice}</p>
+        { productPrice && <p className="product-price">{RUPEE_SYMBOL} {productPrice}</p> }
       </div>
-     
-      <p className="description"> {desc}</p>
-      { productPrice && 
-      <>
-        <p className="product-guarantee"><i class="fi fi-sr-shield-check"></i>{productGuarantee} YEARS GUARANTEE</p>
 
-        <div className="product-buttons">
-          <button className="wishlist-button">ADD TO WISHLIST</button>
-          <button className="cart-button">ADD TO CART</button>
-        </div>
-      </>
+      {productQuantity && <p className="product-quantity">{QUANTITY_LABEL}{productQuantity}</p>}
+     
+      <p className="description">{desc}</p>
+      { productGuarantee && 
+        <>
+          <p className="product-guarantee"><i className="fi fi-sr-shield-check"></i> <p>{productGuarantee} {GUARANTEE}</p></p>
+          <div className="product-buttons">
+            <button className="wishlist-button" onClick={() => onAddToWishlist()}>{ADD_TO_WISHLIST_BUTTON}</button>
+            <button className="cart-button" onClick={() => onAddToCart()}>{ADD_TO_CART_BUTTON}</button>
+          </div>
+        </>
       }
-      {!productPrice && <Link to={`/categories/${title}`}><button className="read-more-button" >{SHOP_NOW_BUTTON}</button></Link>}
+      {!productPrice && <Link to={`/categories/${title.toLowerCase()}`}><button className="shop-now-button" >{SHOP_NOW_BUTTON}</button></Link>}
     </div>
   )
 }

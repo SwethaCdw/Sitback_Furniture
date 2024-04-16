@@ -1,6 +1,11 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/variables.scss';
+@import '../../styles/colors.scss';
+
+
 .card-container {
     position: relative;
-    padding: 10px;
+    padding: 0.625rem;
   
     img {
       object-fit: cover;
@@ -8,25 +13,30 @@
       height: 550px;
     }
     .title-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      @include flex-align(space-between, center);
       .title {
+        width: 75%;
         margin: 10px 0;
-        font-size: 25px; //have to change accordingly
+        font-size: 1.5rem;
         font-weight: 600;
       }
       .product-price {
-        font-size: 15px;
+        @include flex-align(normal, center);
+        font-size: 0.875rem;
         font-weight: 600;
       }
     }
     .product-guarantee {
-      font-size: 12px;
+      display: flex;
+      font-size: 0.75rem;
       font-weight: 600;
-      color: green;
-      padding-bottom: 10px;
-      border-bottom: 1px solid lightgray;
+      color: $guarantee-color;
+      padding-bottom: 0.625rem;
+      border-bottom: 1px solid $border-bottom-color;
+      i {
+        margin-top: 2px;
+        padding-right: 3px;
+      }
     }
 
     .city-names {
@@ -34,21 +44,25 @@
     }
   
     .description {
-        font-size: 13px;
+        font-size: 0.813rem;
         line-height: 1.75;
-        margin-bottom: 12px;
+        margin-bottom: 0.75rem;
     }
     .product-buttons {
       float: right;
       padding-top: 10px;
       .wishlist-button {
         background: none;
-        color: gray;
+        color: $add-to-wishlist-color;
       }
       .cart-button {
-        margin-left: 10px;
         padding: 10px 20px;
       }
+    }
+
+    .product-quantity{
+      font-size: 0.75rem;
+      padding-bottom: 10px;
     }
     
   }

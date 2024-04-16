@@ -1,0 +1,2 @@
+export const PRODUCTS_URL = 'https://jsonmockserver.vercel.app/api/shopping/furniture/products?category=';
+export const CATEGORY_URL = 'https://jsonmockserver.vercel.app/api/shopping/furniture/categories'

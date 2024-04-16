@@ -6,17 +6,29 @@
   padding: 0 35px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
+.header .app-logo {
+  cursor: pointer;
+  font-weight: 600;
+}
 .header ul {
   list-style: none;
   display: flex;
   justify-content: space-between;
   width: 20%;
+  height: 100%;
 }
 .header ul li {
   font-size: 0.8rem;
   font-weight: 600;
+  padding-top: 22px;
 }
-.header .user-name {
+.header ul .active {
+  border-bottom: 8px solid black;
+}
+.header .profile-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-weight: bold;
   font-size: 14px;
   max-width: 200px;

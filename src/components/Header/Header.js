@@ -1,19 +1,35 @@
-import React from 'react'
-import "./Header.css"
-import { categoryData } from '../../services/category-service'
+import React, { useEffect } from 'react';
+import { categoryData } from '../../services/category-service';
 import { LOGO_TITLE, USERNAME } from '../../constants/constants';
+import { MdArrowDropDown } from "react-icons/md";
+import { Link, NavLink } from 'react-router-dom';
+import "./Header.css";
 
 const Header = () => {
-    console.log(categoryData);
+  useEffect(() => {
+
+  },[]);
+
   return (
     <section className='header'>            
-        <h4>{LOGO_TITLE}</h4>
+        <Link to="/">
+          <p className='app-logo'>{LOGO_TITLE}</p>
+        </Link>
         <ul>
-            {categoryData.map((item) => {
-                return <li key={item.id} value={item.category}>{item.category.toUpperCase()}</li>  
+        {categoryData.map((item) => {
+                return (
+                <NavLink 
+                  to={`/categories/${item.category.toLowerCase()}`} 
+                  key={item.id}
+                  activeClassName="active"
+                >
+                    <li>{item.category.toUpperCase()}</li>
+                </NavLink>
+                );
             })}
         </ul>
-        <p className='user-name'>{USERNAME}</p>
+        <p className='profile-user'>{USERNAME}<MdArrowDropDown /></p>
+        
     </section>
   )
 }

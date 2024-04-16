@@ -1,6 +1,6 @@
 .card-container {
   position: relative;
-  padding: 10px;
+  padding: 0.625rem;
 }
 .card-container img {
   -o-object-fit: cover;
@@ -14,28 +14,37 @@
   justify-content: space-between;
 }
 .card-container .title-container .title {
+  width: 75%;
   margin: 10px 0;
-  font-size: 25px;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 .card-container .title-container .product-price {
-  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: normal;
+  font-size: 0.875rem;
   font-weight: 600;
 }
 .card-container .product-guarantee {
-  font-size: 12px;
+  display: flex;
+  font-size: 0.75rem;
   font-weight: 600;
   color: green;
-  padding-bottom: 10px;
-  border-bottom: 1px solid lightgray;
+  padding-bottom: 0.625rem;
+  border-bottom: 1px solid #f7f7f7;
+}
+.card-container .product-guarantee i {
+  margin-top: 2px;
+  padding-right: 3px;
 }
 .card-container .city-names {
   font-weight: 700;
 }
 .card-container .description {
-  font-size: 13px;
+  font-size: 0.813rem;
   line-height: 1.75;
-  margin-bottom: 12px;
+  margin-bottom: 0.75rem;
 }
 .card-container .product-buttons {
   float: right;
@@ -46,6 +55,9 @@
   color: gray;
 }
 .card-container .product-buttons .cart-button {
-  margin-left: 10px;
   padding: 10px 20px;
+}
+.card-container .product-quantity {
+  font-size: 0.75rem;
+  padding-bottom: 10px;
 }/*# sourceMappingURL=Card.css.map */
