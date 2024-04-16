@@ -13,7 +13,7 @@
   padding: 30px;
   padding-bottom: 100px;
   padding-top: 90px;
-  overflow: scroll;
+  overflow: auto;
   height: 100vh;
 }
 .shop-card-container-wrapper.open {
@@ -26,8 +26,8 @@
   height: 175px;
 }
 .shop-card-container-wrapper .title-container .title {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 .shop-card-container-wrapper .description {
-  font-size: 10px;
+  font-size: 0.625rem;
 }/*# sourceMappingURL=Shop.css.map */

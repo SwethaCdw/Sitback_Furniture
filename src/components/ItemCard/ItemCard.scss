@@ -1,10 +1,15 @@
+
+@import '../../styles/variables.scss';
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+
 .item-card {
     position: relative;
     display: flex;
     align-items: center;
     border-radius: 8px;
     padding: 10px;
-    background-color: #fff;
+    background-color: $place-order-background;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin: 20px 20px 0 20px;
   }
@@ -27,12 +32,12 @@
   
   .item-details h3 {
     margin: 0;
-    font-size: 16px;
+    font-size: 1rem;
   }
   
   .item-details p {
     margin: 5px 0;
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
   .quantity-container {
@@ -40,7 +45,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: white;
+    background: $place-order-background;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 75px;
     height: 20px;

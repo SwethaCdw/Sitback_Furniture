@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { categoryData } from '../../services/category-service';
 import { LOGO_TITLE, USERNAME } from '../../constants/constants';
 import { MdArrowDropDown } from "react-icons/md";
@@ -6,10 +6,6 @@ import { Link, NavLink } from 'react-router-dom';
 import "./Header.css";
 
 const Header = () => {
-  useEffect(() => {
-
-  },[]);
-
   return (
     <section className='header'>            
         <Link to="/">

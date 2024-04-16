@@ -12,27 +12,28 @@
   left: 0;
   height: 100px;
   width: 100%;
-  background: white;
+  background: #fff;
   display: flex;
-  justify-content: space-around;
   align-items: center;
+  justify-content: space-around;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .cart-container .place-order .total-price .total-amount-label {
-  font-size: 11px;
+  font-size: 0.688rem;
 }
 .cart-container .tab {
   padding: 0 0 5px;
-  font-size: 14px;
+  font-size: 0.875rem;
   background: none;
-  color: black;
+  color: #808080;
   margin-right: 25px;
   border-radius: 0%;
   cursor: pointer;
   transition: border-bottom 0.3s ease;
 }
 .cart-container .tab.active {
-  border-bottom: 2px solid black;
+  color: #000;
+  border-bottom: 2px solid #000;
 }
 .cart-container h2 {
   margin-bottom: 10px;
@@ -45,7 +46,7 @@
   margin-bottom: 5px;
 }
 .cart-container .no-items {
-  font-size: 14px;
+  font-size: 0.875rem;
   padding-top: 20px;
   font-style: italic;
 }/*# sourceMappingURL=Cart.css.map */

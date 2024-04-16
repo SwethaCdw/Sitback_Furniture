@@ -16,46 +16,74 @@ const Shop = () => {
     const [ totalCartPrice, setTotalCartPrice ] = useState(0);
 
     useEffect(() => {
-      const totalPrice = getItemFromLocalStorage('totalCartPrice');
-      setTotalCartPrice(totalPrice);
+      try {
+        // Retrieve total cart price from local storage
+        const totalPrice = getItemFromLocalStorage('totalCartPrice');
+        setTotalCartPrice(totalPrice);
 
-      const existingCartItems = JSON.parse(getItemFromLocalStorage('cartItems')) || [];
-      setCartItems(existingCartItems);
+        // Retrieve existing cart items from local storage
+        const existingCartItems = JSON.parse(getItemFromLocalStorage('cartItems')) || [];
+        setCartItems(existingCartItems);
 
-      const existingWishlistItems = JSON.parse(getItemFromLocalStorage('wishlist')) || [];
-      setWishlistItems(existingWishlistItems);
+        // Retrieve existing wishlist items from local storage
+        const existingWishlistItems = JSON.parse(getItemFromLocalStorage('wishlist')) || [];
+        setWishlistItems(existingWishlistItems);
 
-      document.body.classList.add('disable-scroll');
+        // Disable scroll on body while fetching data
+        document.body.classList.add('disable-scroll');
 
-      fetchProductsByCategory(categoryId.toLowerCase())
-      .then(data => {
-          if (data) {
-              setProductData(data);
-          }
-      })
-      .catch(error => {
-          console.error('Error fetching products by category:', error);
-      });
+        // Fetch products by category
+        fetchProductsByCategory(categoryId.toLowerCase())
+        .then(data => {
+            if (data) {
+                setProductData(data);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching products by category:', error);
+        });
 
-      return () => {
-        document.body.classList.remove('disable-scroll');
-      };
+        return () => {
+          // Re-enable scroll on body when component unmounts
+          document.body.classList.remove('disable-scroll');
+        };
+      } catch (error) {
+        console.error('Error in useEffect:', error);
+      }
     }, [categoryId]);
 
+    /**
+     * Function to handle adding an item to cart
+     * @param {*} productItem 
+     */
     const handleAddToCart = (productItem) => {
-      const cartItems = addItemToCartOrWishlist(productItem, 'cartItems');
-      setCartItems(cartItems);
+      try {
+        // Add item to cart
+        const cartItems = addItemToCartOrWishlist(productItem, 'cartItems');
+        setCartItems(cartItems);
 
-      const totalPrice = calculateTotalCartPrice();
-      setTotalCartPrice(totalPrice);
-      setItemInLocalStorage('totalCartPrice', totalPrice);
-
+        // Calculate and set total cart price
+        const totalPrice = calculateTotalCartPrice();
+        setTotalCartPrice(totalPrice);
+        setItemInLocalStorage('totalCartPrice', totalPrice);
+      } catch (error) {
+        console.error('Error adding item to cart:', error);
+      }
     };
 
+    /**
+     * Function to handle adding an item to wishlist
+     * @param {*} productItem 
+     */
     const handleAddToWishlist = (productItem) => {
+      try {
         const wishlistItems = addItemToCartOrWishlist(productItem, 'wishlist');
         setWishlistItems(wishlistItems);
+      } catch (error) {
+        console.error('Error adding item to wishlist:', error);
+      }
     }
+
   return (
     <>
         <Header />

@@ -1,7 +1,10 @@
+
+@import '../../styles/variables.scss';
+@import '../../styles/colors.scss';
+@import '../../styles/mixins.scss';
+
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex-align(space-between, center);
     height: 65px;
     padding: 0 35px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
@@ -11,8 +14,7 @@
     }
     ul {
         list-style: none;
-        display: flex;
-        justify-content: space-between;
+        @include flex-align(space-between, normal);
         width: 20%;
         height: 100%;
         li{
@@ -21,17 +23,16 @@
             padding-top: 22px;
         }
         .active{
-            border-bottom: 8px solid black;
+            border-bottom: 8px solid $tab-color;
         }
     }
     .profile-user {
-        display: flex;
-        align-items: center;
+        @include flex-align(normal, center);
         gap: 10px;
         font-weight: bold;
-        font-size: 14px;
+        font-size: 0.875rem;
         max-width: 200px;
         overflow: hidden;
-        text-overflow: ellipsis; //ellipsis
+        text-overflow: ellipsis;
     }
 }

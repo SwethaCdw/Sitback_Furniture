@@ -1,7 +1,7 @@
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   height: 65px;
   padding: 0 35px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
@@ -13,6 +13,7 @@
 .header ul {
   list-style: none;
   display: flex;
+  align-items: normal;
   justify-content: space-between;
   width: 20%;
   height: 100%;
@@ -23,14 +24,15 @@
   padding-top: 22px;
 }
 .header ul .active {
-  border-bottom: 8px solid black;
+  border-bottom: 8px solid #000;
 }
 .header .profile-user {
   display: flex;
   align-items: center;
+  justify-content: normal;
   gap: 10px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 0.875rem;
   max-width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;

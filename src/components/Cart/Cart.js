@@ -13,6 +13,7 @@ const Cart = ({cartItems, wishlistItems, cartPrice}) => {
   const [wishlistItemsInShop, setWishlistItemsInShop ] = useState([]);
   const [activeTab, setActiveTab] = useState(MY_CART_TITLE);
 
+  // Update state when props change
   useEffect(() => {
     setTotalCartPrice(cartPrice);
     setCartItemsInShop(cartItems);
@@ -20,45 +21,72 @@ const Cart = ({cartItems, wishlistItems, cartPrice}) => {
   }, [cartPrice, cartItems, wishlistItems])
 
 
-  // Function to handle tab change
+  /**
+   * Function to handle tab change
+   * @param {*} tab 
+   */
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
 
+  /**
+   * Delete item from cart and set cart items to its state
+   * @param {*} itemId 
+   */
   const handleItemDeletion = (itemId) => {
-    const updatedCartItems = removeItemFromCart(itemId);
-    setCartItemsInShop(updatedCartItems);
-    const totalPrice = calculateTotalCartPrice();
-    setTotalCartPrice(totalPrice);
+    try {
+      const updatedCartItems = removeItemFromCart(itemId);
+      setCartItemsInShop(updatedCartItems);
+      const totalPrice = calculateTotalCartPrice();
+      setTotalCartPrice(totalPrice);
+    } catch (error) {
+      console.error('Error removing item from cart:', error);
+    }
   };
 
-  const updateQuantityInLocalStorage = (updatedQuantity, item) => {
-    const cartItems = JSON.parse(getItemFromLocalStorage('cartItems')) || [];
-    const updatedCartItems = cartItems.map((cartItem) => {
-      if (cartItem.id === item.id) {
-        const totalPrice = parseFloat(cartItem.price) * updatedQuantity;
-        return { ...cartItem, quantity: updatedQuantity, totalPrice: totalPrice.toFixed(2) };
-      }
-      return cartItem;
-    });
-    setItemInLocalStorage('cartItems', JSON.stringify(updatedCartItems));
-    setCartItemsInShop(updatedCartItems);
+  /**
+   * Update Quantity based on increase/decrease in cart component
+   * @param {*} updatedQuantity 
+   * @param {*} item 
+   */
+  const updateQuantity = (updatedQuantity, item) => {
+    try {
+      const cartItems = JSON.parse(getItemFromLocalStorage('cartItems')) || [];
+      const updatedCartItems = cartItems.map((cartItem) => {
+        if (cartItem.id === item.id) {
+          const totalPrice = parseFloat(cartItem.price) * updatedQuantity;
+          return { ...cartItem, quantity: updatedQuantity, totalPrice: totalPrice.toFixed(2) };
+        }
+        return cartItem;
+      });
+      setItemInLocalStorage('cartItems', JSON.stringify(updatedCartItems));
+      setCartItemsInShop(updatedCartItems);
 
-    const totalPrice = calculateTotalCartPrice();
-    setTotalCartPrice(totalPrice);
+      const totalPrice = calculateTotalCartPrice();
+      setTotalCartPrice(totalPrice);
+    } catch (error) {
+      console.error('Error updating quantity in local storage:', error);
+    }
   };
 
+  /**
+   * Add wishlist item to cart
+   * @param {*} productItem 
+   */
   const addWishlistItemToCart = (productItem) => {
-    const selectedItem = wishlistItemsInShop.find(item => item.id === productItem.id);
-    const cartItems =  addItemToCartOrWishlist(selectedItem, 'cartItems');
-    setCartItemsInShop(cartItems);
+    try {
+      const selectedItem = wishlistItemsInShop.find(item => item.id === productItem.id);
+      const cartItems =  addItemToCartOrWishlist(selectedItem, 'cartItems');
+      setCartItemsInShop(cartItems);
 
-    const updatedWishlistItems = removeItemFromWishlist(productItem);
-    setWishlistItemsInShop(updatedWishlistItems);
-    
-    const totalPrice = calculateTotalCartPrice();
-    setTotalCartPrice(totalPrice);
-    
+      const updatedWishlistItems = removeItemFromWishlist(productItem);
+      setWishlistItemsInShop(updatedWishlistItems);
+      
+      const totalPrice = calculateTotalCartPrice();
+      setTotalCartPrice(totalPrice);
+    } catch (error) {
+      console.error('Error adding wishlist item to cart:', error);
+    }
   }
 
   return (
@@ -83,7 +111,7 @@ const Cart = ({cartItems, wishlistItems, cartPrice}) => {
                     item={item}
                     type={MY_CART_TITLE}
                     removeItemFromCart={handleItemDeletion}
-                    updateQuantityInLocalStorage={updateQuantityInLocalStorage}
+                    updateQuantityInLocalStorage={updateQuantity}
                   />
                 ))}
               </ul>

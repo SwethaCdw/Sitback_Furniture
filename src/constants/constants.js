@@ -27,3 +27,6 @@ export const COPYRIGHTS = 'COPYRIGHTS 2024';
 
 export const ORDER_CONFIRMATION_TITLE ='Order Confirmation';
 export const ORDER_CONFIRMATION_CAPTION = 'Thank you for shopping with us. The items will be delivered within 7 days.';
+
+export const DECREASE_CART_QUANTITY = '-';
+export const INCREASE_CART_QUANTITY = '+';
