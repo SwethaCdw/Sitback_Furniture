@@ -17,6 +17,7 @@
   height: 100vh;
 }
 .shop-card-container-wrapper.open {
+  flex: 80%;
   grid-template-columns: repeat(3, 1fr);
 }
 .shop-card-container-wrapper img {

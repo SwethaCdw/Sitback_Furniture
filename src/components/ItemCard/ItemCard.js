@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './ItemCard.css';
-import { handleImageError } from '../../utils/common-utils';
+import { formattedPrice, handleImageError } from '../../utils/common-utils';
 import { ADD_TO_CART_BUTTON, DECREASE_CART_QUANTITY, INCREASE_CART_QUANTITY, MY_CART_TITLE, MY_WISHLIST_TITLE, RUPEE_SYMBOL } from '../../constants/constants';
 
 const ItemCard = ({ item, type, removeItemFromCart, updateQuantityInLocalStorage, addWishlistItemToCart }) => {
@@ -47,7 +47,7 @@ const ItemCard = ({ item, type, removeItemFromCart, updateQuantityInLocalStorage
 
       <div className='item-details'>
         <p>{item.name}</p>
-        <p>{RUPEE_SYMBOL} {item.price}</p>
+        <p>{RUPEE_SYMBOL} {formattedPrice(item.price)}</p>
 
         { type === MY_CART_TITLE && <div className='quantity-container'>
           <p onClick={decreaseQuantity}> {DECREASE_CART_QUANTITY} </p>

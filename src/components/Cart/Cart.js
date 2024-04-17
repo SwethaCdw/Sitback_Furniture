@@ -5,20 +5,23 @@ import { Link } from 'react-router-dom';
 import { getItemFromLocalStorage, setItemInLocalStorage } from '../../utils/local-storage-utils';
 import { addItemToCartOrWishlist, calculateTotalCartPrice, removeItemFromCart, removeItemFromWishlist } from '../../utils/cart-utils';
 import { MY_CART_TITLE, MY_WISHLIST_TITLE, NO_ITEMS, PLACE_ORDER, TOTAL_CART_AMOUNT_LABEL } from '../../constants/constants';
+import { formattedPrice } from '../../utils/common-utils';
 
-const Cart = ({cartItems, wishlistItems, cartPrice}) => {
+const Cart = ({cartItems, wishlistItems, cartPrice, activeTab}) => {
+  console.log(activeTab);
 
   const [totalCartPrice, setTotalCartPrice ] = useState(0);
   const [cartItemsInShop, setCartItemsInShop] = useState([]);
   const [wishlistItemsInShop, setWishlistItemsInShop ] = useState([]);
-  const [activeTab, setActiveTab] = useState(MY_CART_TITLE);
+  const [currentTab, setCurrentTab] = useState('');
 
   // Update state when props change
   useEffect(() => {
     setTotalCartPrice(cartPrice);
     setCartItemsInShop(cartItems);
     setWishlistItemsInShop(wishlistItems);
-  }, [cartPrice, cartItems, wishlistItems])
+    setCurrentTab(activeTab);
+  }, [cartPrice, cartItems, wishlistItems, activeTab])
 
 
   /**
@@ -26,7 +29,7 @@ const Cart = ({cartItems, wishlistItems, cartPrice}) => {
    * @param {*} tab 
    */
   const handleTabChange = (tab) => {
-    setActiveTab(tab);
+    setCurrentTab(tab);
   };
 
   /**
@@ -84,6 +87,7 @@ const Cart = ({cartItems, wishlistItems, cartPrice}) => {
       
       const totalPrice = calculateTotalCartPrice();
       setTotalCartPrice(totalPrice);
+      setCurrentTab(MY_CART_TITLE);
     } catch (error) {
       console.error('Error adding wishlist item to cart:', error);
     }
@@ -93,12 +97,12 @@ const Cart = ({cartItems, wishlistItems, cartPrice}) => {
     <div className='cart-container'>
       {/* Tab buttons */}
       <div>
-        <button className={`tab ${activeTab === MY_CART_TITLE ? 'active' : ''}`} onClick={() => handleTabChange(MY_CART_TITLE)}>{MY_CART_TITLE}</button>
-        <button className={`tab ${activeTab === MY_WISHLIST_TITLE ? 'active' : ''}`} onClick={() => handleTabChange(MY_WISHLIST_TITLE)}>{MY_WISHLIST_TITLE}</button>
+        <button className={`tab ${currentTab === MY_CART_TITLE ? 'active' : ''}`} onClick={() => handleTabChange(MY_CART_TITLE)}>{MY_CART_TITLE}</button>
+        <button className={`tab ${currentTab === MY_WISHLIST_TITLE ? 'active' : ''}`} onClick={() => handleTabChange(MY_WISHLIST_TITLE)}>{MY_WISHLIST_TITLE}</button>
       </div>
       
       {/* Content based on active tab */}
-      {activeTab === MY_CART_TITLE && (
+      {currentTab === MY_CART_TITLE && (
         <div>
           {cartItemsInShop.length === 0 ? (
             <p className='no-items'>{NO_ITEMS}</p>
@@ -118,15 +122,15 @@ const Cart = ({cartItems, wishlistItems, cartPrice}) => {
               <div className='place-order'>
                 <div className='total-price'>
                   <p className='total-amount-label'>{TOTAL_CART_AMOUNT_LABEL}</p>
-                  <p className='total-amount-value'>{totalCartPrice}</p>
+                  <p className='total-amount-value'>{formattedPrice(totalCartPrice)}</p>
                 </div>
-                <Link to={`/confirmOrder`}><button  className='place-order-button'>{PLACE_ORDER}</button></Link>
+                <Link to={`/confirmOrder`}><button className='place-order-button'>{PLACE_ORDER}</button></Link>
               </div>
             </>
           )}
         </div>
       )}
-      {activeTab === MY_WISHLIST_TITLE && (
+      {currentTab === MY_WISHLIST_TITLE && (
         <div>
           {wishlistItemsInShop.length === 0 ? (
             <p className='no-items'>{NO_ITEMS}</p>

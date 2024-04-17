@@ -9,7 +9,9 @@ export const ERROR_PAGE = 'You have chosen an invalid option';
 
 export const RUPEE_SYMBOL = '₹';
 export const QUANTITY_LABEL = 'Quantity: ';
-export const GUARANTEE = 'YEARS GUARANTEE';
+export const GUARANTEE = 'GUARANTEE';
+export const YEARS = 'YEARS';
+export const YEAR = 'YEAR';
 export const ADD_TO_WISHLIST_BUTTON = 'ADD TO WISHLIST';
 export const ADD_TO_CART_BUTTON = 'ADD TO CART';
 

@@ -1,1 +1,1 @@
-{"version":3,"sources":["OrderConfirmation.scss","OrderConfirmation.css"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,sBAAA;EACA,gBAAA;ACCJ;;ADCA;EACI,yBAAA;EACA,kBAAA;ACEJ;ADDI;EACI,sBAAA;ACGR;ADDI;EACI,kBAAA;ACGR;ADDI;EACI,aAAA;EACA,qCAAA;EACA,SAAA;EACA,aAAA;ACGR;ADFQ;EACI,6BAAA;EACA,+BAAA;EACA,gCAAA;EACA,aAAA;ACIZ;ADDY;EACI,eAAA;ACGhB;ADCQ;EACI,eAAA;ACCZ","file":"OrderConfirmation.css"}
+{"version":3,"sources":[],"names":[],"mappings":"","file":"OrderConfirmation.css"}

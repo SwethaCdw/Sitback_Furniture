@@ -17,6 +17,7 @@
     height: 100vh;
 
     &.open {
+        flex: 80%;
         grid-template-columns: repeat(3, 1fr);
     }
     img{

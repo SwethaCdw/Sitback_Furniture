@@ -7,6 +7,7 @@ import { getItemFromLocalStorage, setItemInLocalStorage } from '../../utils/loca
 import { addItemToCartOrWishlist, calculateTotalCartPrice } from '../../utils/cart-utils';
 import Header from '../../components/Header/Header';
 import './Shop.css';
+import { MY_CART_TITLE, MY_WISHLIST_TITLE } from '../../constants/constants';
 
 const Shop = () => {
     const { categoryId } = useParams();
@@ -14,6 +15,7 @@ const Shop = () => {
     const [ cartItems, setCartItems ]= useState([]);
     const [ wishlistItems, setWishlistItems ] = useState([])
     const [ totalCartPrice, setTotalCartPrice ] = useState(0);
+    const [ activeTab, setActiveTab ] = useState(MY_CART_TITLE);
 
     useEffect(() => {
       try {
@@ -66,6 +68,7 @@ const Shop = () => {
         const totalPrice = calculateTotalCartPrice();
         setTotalCartPrice(totalPrice);
         setItemInLocalStorage('totalCartPrice', totalPrice);
+        setActiveTab(MY_CART_TITLE);
       } catch (error) {
         console.error('Error adding item to cart:', error);
       }
@@ -79,6 +82,7 @@ const Shop = () => {
       try {
         const wishlistItems = addItemToCartOrWishlist(productItem, 'wishlist');
         setWishlistItems(wishlistItems);
+        setActiveTab(MY_WISHLIST_TITLE);
       } catch (error) {
         console.error('Error adding item to wishlist:', error);
       }
@@ -93,7 +97,7 @@ const Shop = () => {
                     return <Card key={item.id} title={item.name} desc={item.description} imageSource={item.photo} productGuarantee={item.guarantee} productPrice={item.price} onAddToCart={() => handleAddToCart(item)} onAddToWishlist={() => handleAddToWishlist(item)}/>
                 })}
             </div>
-            {(cartItems.length > 0 || wishlistItems.length > 0) && <Cart cartItems={cartItems} wishlistItems={wishlistItems} cartKey={cartItems.length} wishlistKey={wishlistItems.length} cartPrice={totalCartPrice}/>}
+            {(cartItems.length > 0 || wishlistItems.length > 0) && <Cart cartItems={cartItems} wishlistItems={wishlistItems} cartKey={cartItems.length} wishlistKey={wishlistItems.length} cartPrice={totalCartPrice} activeTab={activeTab}/>}
         </div>
     </>
   )

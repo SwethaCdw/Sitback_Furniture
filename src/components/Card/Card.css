@@ -54,6 +54,9 @@
   background: none;
   color: gray;
 }
+.card-container .product-buttons .wishlist-button:hover {
+  color: black;
+}
 .card-container .product-buttons .cart-button {
   padding: 10px 20px;
 }

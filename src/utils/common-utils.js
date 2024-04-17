@@ -8,3 +8,8 @@ import { FALLBACK_IMAGE } from "../constants/constants";
 export const handleImageError = (event) => {
     event.target.src = FALLBACK_IMAGE;
 };
+
+
+export const formattedPrice = (price) => {
+    return new Intl.NumberFormat('en-IN').format(price);
+  };

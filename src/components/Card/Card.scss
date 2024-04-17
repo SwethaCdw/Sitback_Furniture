@@ -54,6 +54,10 @@
       .wishlist-button {
         background: none;
         color: $add-to-wishlist-color;
+
+        &:hover {
+          color: black;
+        }
       }
       .cart-button {
         padding: 10px 20px;
